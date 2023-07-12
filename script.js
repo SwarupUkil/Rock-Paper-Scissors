@@ -14,6 +14,9 @@ function getComputerChoice(){
 
 function playRound(playerSelection="rock", computerSelection){
 
+    if (playerSelection === null){
+        return ["Game prematurely ended.", 0, 0];
+    } 
     playerSelection = playerSelection.toLowerCase();
 
     if (playerSelection === computerSelection){
@@ -44,6 +47,8 @@ function game(){
 
         if (result[0] === "Bad input, try again."){
             i--;
+        }else if(result[0] === "Game prematurely ended."){
+            return;
         }
     }
 
