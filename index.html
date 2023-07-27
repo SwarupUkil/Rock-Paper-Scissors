@@ -3,19 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>Rock, Paper, Scissors</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="./style.css">
         <script src="script.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&amp;display=swap" rel="stylesheet">
     </head>
     <body>
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissor">Scissor</button>
+        <div class="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissor">Scissor</button>
+        </div>
         <div class="scoreboard">
             <div class="scores"><!-- Add scores in js. --></div>
-            <div>
+            <div class="versus">
                 <div>Player</div>
                 <div>Computer</div>
             </div>
         </div>
+
+
+        <!-- 
+            To do:
+            - the entire style is poor, gotta make it look good.
+            - Also fix the division of scoreboard as its currently not
+              in good shape at all. Like, number over player should be the
+              division, opposed to one row of numbers and next row of player
+              against computers. 
+        -->
     </body>
 </html>
