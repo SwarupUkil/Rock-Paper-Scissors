@@ -3,14 +3,19 @@
 let playerScore, computerScore, roundNumber;
 playerScore = computerScore = roundNumber = 0;
 
+// Generates scoreboard and initial values.
 const scoreboard = document.querySelector('.scoreboard');
+const resultText = document.createElement('div');
+scoreboard.appendChild(resultText);
+const scores = document.querySelector('.scores');
 const playerDiv = document.createElement('div');
 const computerDiv = document.createElement('div')
 playerDiv.textContent = `${playerScore}`;
 computerDiv.textContent = `${computerScore}`;
-scoreboard.appendChild(playerDiv);
-scoreboard.appendChild(computerDiv);
+scores.appendChild(playerDiv);
+scores.appendChild(computerDiv);
 
+// Variables for the rock, paper, scissor games.
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', (event) => {
     gameResults(playRound("rock", getComputerChoice()));
@@ -26,6 +31,7 @@ scissor.addEventListener('click', (event) => {
     gameResults(playRound("scissor", getComputerChoice()));
 });
 
+// Decides a random choice for the computer.
 function getComputerChoice(){
     let randomNumber = Math.floor(Math.random() * 10000);
     switch(randomNumber % 3){
@@ -38,6 +44,8 @@ function getComputerChoice(){
     }
 }
 
+// Plays a full round of rock, paper, scissors using
+// players input and computer input, and returns reseults.
 function playRound(playerSelection="rock", computerSelection){
 
     if (playerSelection === null){
@@ -61,37 +69,25 @@ function playRound(playerSelection="rock", computerSelection){
 }
 
 function gameResults(results){
+
     playerScore += results[1];
     computerScore += results[2];
     playerDiv.textContent = `${playerScore}`;
     computerDiv.textContent = `${computerScore}`;
-    alert(results[0]);
 
-}
-
-function game(){
-    let playerTotalPoints, computerTotalPoints;
-    playerTotalPoints = computerTotalPoints = 0;
-
-    // for (let i=0; i < 5; i++){
-    //     playerSelection = prompt("Input your choice: Rock, Paper, or scissor.");
-    //     let result = playRound(playerSelection, getComputerChoice());
-    //     console.log(result[0]);
-    //     playerTotalPoints += result[1];
-    //     computerTotalPoints += result[2];
-
-    //     if (result[0] === "Bad input, try again."){
-    //         i--;
-    //     }else if(result[0] === "Game prematurely ended."){
-    //         return;
-    //     }
-    // }
-
-    if (playerTotalPoints > computerTotalPoints){
-        alert("You Win!")
-    }else if (playerTotalPoints < computerTotalPoints){
-        alert("You Lose.")
-    }else{
-        alert("You Tied.")
+    roundNumber++;
+    if (roundNumber === 5){
+        // Essentially the game is "over" after 5 rounds.
+        if (playerScore > computerScore){
+            resultText.textContent = "You beat the computer!";
+        }else if (playerScore < computerScore){
+            resultText.textContent = "You lost to the computer.";
+        }else{
+            resultText.textContent = "You tied with the computer.";
+        }
+        playerScore = computerScore = roundNumber = 0;
+        return;
     }
+
+    resultText.textContent = results[0];
 }
